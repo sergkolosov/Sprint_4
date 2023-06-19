@@ -11,6 +11,11 @@ class MainPageLocator:
     ORDER_BUTTON_IN_THE_BODY = (By.XPATH, '//div[@class="Home_FinishButton__1_cWm"]/button')
     FAQ_ACCORDION_BLOCK = (By.XPATH, '//div[@class="accordion"]')
     HOME_HEADER_BLOCK = (By.XPATH, '//div[@class="Home_Header__iJKdX"]')
+    SCOOTER_LOGO = (By.XPATH, '//img[@src="/assets/scooter.svg"]')
+    YANDEX_LOGO = (By.XPATH, '//img[@src="/assets/ya.svg"]')
+    HOME_HEADER_SCOOTER_MAIN_PAGE = (By.CLASS_NAME, "Home_Header__iJKdX")
+    YANDEX_PROMO_WINDOW_CLOSE_BUTTON = (By.TAG_NAME, 'svg')
+    PAGE_BODY_ELEMENT = (By.XPATH, '//div')
 
 
 class MainPageAction(BasePage):
@@ -50,3 +55,17 @@ class MainPageAction(BasePage):
     @allure.step('Найти на главной странице верхний рекламный блок')
     def find_home_header_block(self):
         return self.find_element_by_locator(MainPageLocator.HOME_HEADER_BLOCK, time=5)
+
+    @allure.step('Возвращаемся на главную страницу кликом на лого Самокат')
+    def click_on_scooter_logo(self):
+        locator = MainPageLocator.SCOOTER_LOGO
+        return self.find_element_by_locator(locator, time=5).click()
+
+    @allure.step('Переходим на страницу  кликом на лого Яндекс')
+    def click_on_yandex_logo(self):
+        locator = MainPageLocator.YANDEX_LOGO
+        return self.find_element_by_locator(locator, time=5).click()
+
+    @allure.step('Получаем URL главной страницы Яндекс')
+    def get_url_yandex_page(self):
+        return self.get_url_current_page(MainPageLocator.PAGE_BODY_ELEMENT)

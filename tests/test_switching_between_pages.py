@@ -11,11 +11,10 @@ class TestSwitch:
     @allure.title('Проверка перехода на главную страницу сервиса по клику в лого Самокат')
     @allure.description('Открываем стенд на странице оформления заказа, кликаем в лого, проверяем что вернулись на главную исследуя текст верхнего рекламного блока')
     def test_order_via_order_button_in_the_header(self, driver):
-        base_page = BasePage(driver)
         main_page = MainPageAction(driver)
 
-        base_page.open_page(Urls.ORDER_PAGE)
-        base_page.click_on_scooter_logo()
+        main_page.open_page(Urls.ORDER_PAGE)
+        main_page.click_on_scooter_logo()
 
         actually_value = main_page.find_home_header_block().text
         expected_value_1 = TextContentMinePage.home_header_block[0]
@@ -28,12 +27,12 @@ class TestSwitch:
     @allure.title('Проверка перехода на главную страницу Яндекс по клику в лого Яндекс')
     @allure.description('Открываем стенд на главной странице, кликаем в лого, проверяем URL')
     def test_go_to_yandex_page_by_click__logo(self, driver):
-        base_page = BasePage(driver)
-        base_page.open_page(Urls.MAIN_PAGE)
+        main_page = MainPageAction(driver)
+        main_page.open_page(Urls.MAIN_PAGE)
 
-        base_page.click_on_yandex_logo()
-        base_page.switch_to_window_with_number(1)
+        main_page.click_on_yandex_logo()
+        main_page.switch_to_window_with_number(1)
 
-        actually_url = base_page.get_url_current_page()
+        actually_url = main_page.get_url_yandex_page()
         expected_url = Urls.YANDEX_PAGE
         assert actually_url == expected_url, f'Ожидался URL: "{expected_url}", получен "{actually_url}"'

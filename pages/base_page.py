@@ -6,11 +6,6 @@ from data import Urls
 
 
 class BasePage:
-    SCOOTER_LOGO = (By.XPATH, '//img[@src="/assets/scooter.svg"]')
-    YANDEX_LOGO = (By.XPATH, '//img[@src="/assets/ya.svg"]')
-    HOME_HEADER_SCOOTER_MAIN_PAGE = (By.CLASS_NAME, "Home_Header__iJKdX")
-    YANDEX_PROMO_WINDOW_CLOSE_BUTTON = (By.TAG_NAME, 'svg')
-    PAGE_BODY = (By.XPATH, '//div')
 
     def __init__(self, driver):
         self.driver = driver
@@ -30,23 +25,12 @@ class BasePage:
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
         return element
 
-    @allure.step('Возвращаемся на главную страницу кликом на лого Самокат')
-    def click_on_scooter_logo(self):
-        locator = BasePage.SCOOTER_LOGO
-        return self.find_element_by_locator(locator, time=5).click()
-
-    @allure.step('Переходим на страницу  кликом на лого Яндекс')
-    def click_on_yandex_logo(self):
-        locator = BasePage.YANDEX_LOGO
-        return self.find_element_by_locator(locator, time=5).click()
-
     @allure.step('Переходим во вкладку браузера {window_number}')
     def switch_to_window_with_number(self, window_number):
         return self.driver.switch_to.window(self.driver.window_handles[window_number])
 
-    @allure.step('Дожидаемся загрузки тела страницы и Получаем URL текущей страницы')
-    def get_url_current_page(self, time=10):
-        locator = BasePage.PAGE_BODY
+    @allure.step('Дожидаемся загрузки элемента {locator} в DOM и получаем URL текущей страницы')
+    def get_url_current_page(self, locator, time=10):
         WebDriverWait(self.driver, time).until(EC.presence_of_all_elements_located(locator),
                                                       message=f'Не найден локатор {locator}')
         return self.driver.current_url
