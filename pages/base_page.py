@@ -40,9 +40,9 @@ class BasePage:
         locator = BasePage.YANDEX_LOGO
         return self.find_element_by_locator(locator, time=5).click()
 
-    @allure.step('Переходим в новую открытую вкладку')
-    def switch_to_new_window(self):
-        return self.driver.switch_to.window(self.driver.window_handles[1])
+    @allure.step('Переходим во вкладку браузера {window_number}')
+    def switch_to_window_with_number(self, window_number):
+        return self.driver.switch_to.window(self.driver.window_handles[window_number])
 
     @allure.step('Дожидаемся загрузки тела страницы и Получаем URL текущей страницы')
     def get_url_current_page(self, time=10):

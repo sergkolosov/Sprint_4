@@ -32,7 +32,7 @@ class TestSwitch:
         base_page.open_page(Urls.MAIN_PAGE)
 
         base_page.click_on_yandex_logo()
-        base_page.switch_to_new_window()
+        base_page.switch_to_window_with_number(1)
 
         actually_url = base_page.get_url_current_page()
         expected_url = Urls.YANDEX_PAGE
