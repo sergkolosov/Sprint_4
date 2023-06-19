@@ -15,11 +15,6 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
 
-    @allure.step('Открыть главную страницу сайта')
-    @allure.link(Urls.MAIN_PAGE, name='Ссылка на страницу')
-    def open_site(self):
-        self.driver.get(Urls.MAIN_PAGE)
-
     @allure.step('Открыть страницу сайта {page_url}')
     def open_page(self, page_url):
         self.driver.get(page_url)

@@ -1,5 +1,7 @@
 import allure
 from selenium.webdriver.common.by import By
+
+from data import Urls
 from pages.base_page import BasePage
 
 
@@ -11,6 +13,12 @@ class MainPageLocator:
 
 
 class MainPageAction(BasePage):
+
+    @allure.step('Открыть главную страницу сайта')
+    @allure.link(Urls.MAIN_PAGE, name='Ссылка на страницу')
+    def open_site(self):
+        self.driver.get(Urls.MAIN_PAGE)
+
     @allure.step('Кликнуть кнопку "Заказать" в шапке страницы')
     def click_order_button_in_the_header_page(self):
         return self.find_element_by_locator(MainPageLocator.ORDER_BUTTON_IN_THE_HEADER, time=2).click()
