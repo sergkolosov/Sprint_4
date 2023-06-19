@@ -1,5 +1,10 @@
+from random import choices, randint
+
 import allure
+from faker import Faker
 from selenium.webdriver.common.by import By
+
+from data import MetroStation
 from pages.base_page import BasePage
 
 
@@ -40,7 +45,14 @@ class OrderPageFirsAction(BasePage):
     def click_next_button(self):
         return self.find_element_by_locator(OrderPageFirstLocator.NEXT_BUTTON, time=2).click()
 
-    def all_field_input_and_next(self, first_name, last_name, address, metro_station, phone_number):
+    def all_field_input_and_next(self):
+        fake = Faker(locale="ru_RU")
+        first_name = fake.first_name()
+        last_name = fake.last_name()
+        address = (fake.street_name() + ', ' + str(randint(1, 300)) + '-' + str(randint(1, 300)))
+        metro_station = choices(MetroStation.metro_station)[0].get('name')
+        phone_number = fake.msisdn()
+
         self.first_name_field_input(first_name)
         self.last_name_field_input(last_name)
         self.address_field_input(address)

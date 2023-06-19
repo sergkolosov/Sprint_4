@@ -1,5 +1,10 @@
+from random import choices
+
 import allure
+from faker import Faker
 from selenium.webdriver.common.by import By
+
+from data import RentalPeriod, ScooterColor
 from pages.base_page import BasePage
 
 
@@ -43,7 +48,13 @@ class OrderPageSecondAction(BasePage):
     def click_yes_button(self):
         return self.find_element_by_locator(OrderPageSecondLocator.YES_BUTTON, time=2).click()
 
-    def all_field_input_and_next(self, when_to_bring, rental_period, scooter_color, comment):
+    def all_field_input_and_next(self):
+        fake = Faker(locale="ru_RU")
+        when_to_bring = str(fake.future_date())
+        rental_period = choices(RentalPeriod.rental_period_visible)[0]
+        scooter_color = choices(ScooterColor.scooter_color)[0]
+        comment = fake.sentence(nb_words=5)
+
         self.when_to_bring_field_input(when_to_bring)
         self.rental_period_field_input(rental_period)
         self.scooter_color_checkbox_input(scooter_color)
