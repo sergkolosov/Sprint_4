@@ -27,44 +27,44 @@ class MainPageAction(BasePage):
 
     @allure.step('Кликнуть кнопку "Заказать" в шапке страницы')
     def click_order_button_in_the_header_page(self):
-        return self.find_element_by_locator(MainPageLocator.ORDER_BUTTON_IN_THE_HEADER, time=2).click()
+        return self.find_element_by_locator(MainPageLocator.ORDER_BUTTON_IN_THE_HEADER).click()
 
     @allure.step('Скролить к кнопке "Заказать" в теле страницы')
     def scroll_to_the_button_in_body(self):
-        self.scroll_to_the_element(MainPageLocator.ORDER_BUTTON_IN_THE_BODY, time=5)
+        self.scroll_to_the_element(MainPageLocator.ORDER_BUTTON_IN_THE_BODY)
 
     @allure.step('Кликнуть кнопку "Заказать" в теле страницы')
     def click_order_button_in_the_body_page(self):
         self.scroll_to_the_button_in_body()
-        return self.find_element_by_locator(MainPageLocator.ORDER_BUTTON_IN_THE_BODY, time=5).click()
+        return self.find_element_by_locator(MainPageLocator.ORDER_BUTTON_IN_THE_BODY).click()
 
     @allure.step('Скролить к блоку FAQ')
     def scroll_to_the_accordion_block(self):
-        self.scroll_to_the_element(MainPageLocator.FAQ_ACCORDION_BLOCK, time=5)
+        self.scroll_to_the_element(MainPageLocator.FAQ_ACCORDION_BLOCK)
 
     @allure.step('Кликнуть вопрос {contains_text}')
     def click_faq_question(self, contains_text):
         locator = (By.XPATH, f'//div[contains(text(),"{contains_text}")]')
-        return self.find_element_by_locator(locator, time=5).click()
+        return self.find_element_by_locator(locator).click()
 
     @allure.step('Получить текст ответа')
     def get_the_faq_response_text(self, contains_text):
         locator = (By.XPATH, f'//div[contains(text(),"{contains_text}")]/parent::div/parent::div/div/p')
-        return self.find_element_by_locator(locator, time=5).text
+        return self.find_element_by_locator(locator).text
 
     @allure.step('Найти на главной странице верхний рекламный блок')
     def find_home_header_block(self):
-        return self.find_element_by_locator(MainPageLocator.HOME_HEADER_BLOCK, time=5)
+        return self.find_element_by_locator(MainPageLocator.HOME_HEADER_BLOCK)
 
     @allure.step('Возвращаемся на главную страницу кликом на лого Самокат')
     def click_on_scooter_logo(self):
         locator = MainPageLocator.SCOOTER_LOGO
-        return self.find_element_by_locator(locator, time=5).click()
+        return self.find_element_by_locator(locator).click()
 
     @allure.step('Переходим на страницу  кликом на лого Яндекс')
     def click_on_yandex_logo(self):
         locator = MainPageLocator.YANDEX_LOGO
-        return self.find_element_by_locator(locator, time=5).click()
+        return self.find_element_by_locator(locator).click()
 
     @allure.step('Получаем URL главной страницы Яндекс')
     def get_url_yandex_page(self):

@@ -10,4 +10,4 @@ class StatusPageLocator:
 class StatusPageAction(BasePage):
     @allure.step('Получить текст на кнопке "Отменить заказ"')
     def get_cancel_order_button_text(self):
-        return self.find_element_by_locator(StatusPageLocator.CANCEL_ORDER_BUTTON, time=2).text
+        return self.find_element_by_locator(StatusPageLocator.CANCEL_ORDER_BUTTON).text

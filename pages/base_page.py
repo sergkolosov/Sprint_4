@@ -12,7 +12,7 @@ class BasePage:
 
     @allure.step('Открыть страницу сайта {page_url}')
     def open_page(self, page_url):
-        self.driver.get(page_url)
+        return self.driver.get(page_url)
 
     def find_element_by_locator(self, locator, time=10):
         """Поиск с ожиданием кликабельности"""

@@ -23,30 +23,30 @@ class OrderPageSecondLocator:
 class OrderPageSecondAction(BasePage):
     @allure.step('Выбрать "Когда привезти самокат" {when_to_bring}')
     def when_to_bring_field_input(self, when_to_bring):
-        self.find_element_by_locator(OrderPageSecondLocator.WHEN_TO_BRING_FIELD, time=2).send_keys(when_to_bring)
-        return self.find_element_by_locator(OrderPageSecondLocator.ABOUT_RENT_TITLE, time=2).click()
+        self.find_element_by_locator(OrderPageSecondLocator.WHEN_TO_BRING_FIELD).send_keys(when_to_bring)
+        return self.find_element_by_locator(OrderPageSecondLocator.ABOUT_RENT_TITLE).click()
 
     @allure.step('Выбрать "Срок аренды" {rental_period}')
     def rental_period_field_input(self, rental_period):
         locator = (By.XPATH, f'//div[contains(text(),"{rental_period}")]')
-        self.find_element_by_locator(OrderPageSecondLocator.RENTAL_PERIOD_FIELD, time=2).click()
-        return self.scroll_to_the_element(locator, time=2).click()
+        self.find_element_by_locator(OrderPageSecondLocator.RENTAL_PERIOD_FIELD).click()
+        return self.scroll_to_the_element(locator).click()
 
     @allure.step('Выбрать "Цвет самоката" {scooter_color}')
     def scooter_color_checkbox_input(self, scooter_color):
-        return self.find_element_by_locator((By.ID, f'{scooter_color}'), time=2).click()
+        return self.find_element_by_locator((By.ID, f'{scooter_color}')).click()
 
     @allure.step('Ввести в поле "Комментарий" {comment}')
     def comment_field_input(self, comment):
-        return self.find_element_by_locator(OrderPageSecondLocator.COMMENT_FIELD, time=2).send_keys(comment)
+        return self.find_element_by_locator(OrderPageSecondLocator.COMMENT_FIELD).send_keys(comment)
 
     @allure.step('Кликнуть кнопку "Далее"')
     def click_next_button(self):
-        return self.find_element_by_locator(OrderPageSecondLocator.NEXT_BUTTON, time=2).click()
+        return self.find_element_by_locator(OrderPageSecondLocator.NEXT_BUTTON).click()
 
     @allure.step('Кликнуть кнопку "Да"')
     def click_yes_button(self):
-        return self.find_element_by_locator(OrderPageSecondLocator.YES_BUTTON, time=2).click()
+        return self.find_element_by_locator(OrderPageSecondLocator.YES_BUTTON).click()
 
     def all_field_input_and_next(self):
         fake = Faker(locale="ru_RU")
@@ -64,8 +64,8 @@ class OrderPageSecondAction(BasePage):
 
     @allure.step('Получить текст в заголовке модального окна')
     def get_order_completed_modal_window_header_text(self):
-        return self.find_element_by_locator(OrderPageSecondLocator.ORDER_COMPLETED_MODAL_WINDOW_HEADER, time=2).text
+        return self.find_element_by_locator(OrderPageSecondLocator.ORDER_COMPLETED_MODAL_WINDOW_HEADER).text
 
     @allure.step('Кликнуть кнопку "Посмотреть статус"')
     def click_view_status_button(self):
-        return self.find_element_by_locator(OrderPageSecondLocator.VIEW_STATUS_BUTTON, time=2).click()
+        return self.find_element_by_locator(OrderPageSecondLocator.VIEW_STATUS_BUTTON).click()
