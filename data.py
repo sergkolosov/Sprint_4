@@ -41,6 +41,10 @@ class ScooterColor:
     scooter_color = ["black", "grey"]
 
 
+class TextContentMinePage:
+    home_header_block = ["Самокат", "на пару дней", "Привезём его прямо к вашей двери,", "а когда накатаетесь — заберём"]
+
+
 class MetroStation:
     """Все станции метро. Брать из ответа сервера. Ручка /api/v1/stations/search"""
     metro_station = [

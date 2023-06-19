@@ -10,6 +10,7 @@ class MainPageLocator:
     ORDER_BUTTON_IN_THE_BODY_BLOCK = (By.XPATH, '//div[@class="Home_FinishButton__1_cWm"]')
     ORDER_BUTTON_IN_THE_BODY = (By.XPATH, '//div[@class="Home_FinishButton__1_cWm"]/button')
     FAQ_ACCORDION_BLOCK = (By.XPATH, '//div[@class="accordion"]')
+    HOME_HEADER_BLOCK = (By.XPATH, '//div[@class="Home_Header__iJKdX"]')
 
 
 class MainPageAction(BasePage):
@@ -45,3 +46,7 @@ class MainPageAction(BasePage):
     def get_the_faq_response_text(self, contains_text):
         locator = (By.XPATH, f'//div[contains(text(),"{contains_text}")]/parent::div/parent::div/div/p')
         return self.find_element_by_locator(locator, time=5).text
+
+    @allure.step('Найти на главной странице верхний рекламный блок')
+    def find_home_header_block(self):
+        return self.find_element_by_locator(MainPageLocator.HOME_HEADER_BLOCK, time=5)
