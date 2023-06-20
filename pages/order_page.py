@@ -12,15 +12,16 @@ class OrderPageLocator:
     FIRST_NAME_FIELD = (By.XPATH, '//input[@placeholder="* Имя"]')
     LAST_NAME_FIELD = (By.XPATH, '//input[@placeholder="* Фамилия"]')
     ADDRESS_FIELD = (By.XPATH, '//input[@placeholder="* Адрес: куда привезти заказ"]')
-    METRO_STATION_INPUT = (By.CLASS_NAME, 'select-search__input')
+    METRO_STATION_INPUT = (By.XPATH, '//input[@placeholder="* Станция метро"]')
     PHONE_NUMBER_FIELD = (By.XPATH, '//input[@placeholder="* Телефон: на него позвонит курьер"]')
-    NEXT_BUTTON = (By.XPATH, '//button[@class="Button_Button__ra12g Button_Middle__1CSJM"]')
+    NEXT_BUTTON = (By.XPATH, '//button[contains(text(),"Далее")]')
 
-    ABOUT_RENT_TITLE = (By.XPATH, '//div[@class="Order_Header__BZXOb"]')
-    WHEN_TO_BRING_FIELD = (By.XPATH, '//div[@class="react-datepicker__input-container"]/input')
+    ABOUT_RENT_TITLE = (By.XPATH, '//div[contains(text(),"Про аренду")]')
+    WHEN_TO_BRING_FIELD = (By.XPATH, '//input[@placeholder="* Когда привезти самокат"]')
     NEXT_MONTH_BUTTON_IN_CALENDAR = (By.XPATH, '//button[@aria-label="Next Month"]')
-    RENTAL_PERIOD_FIELD = (By.CLASS_NAME, 'Dropdown-control')
+    RENTAL_PERIOD_FIELD = (By.XPATH, '//div[contains(text(),"* Срок аренды")]')
     COMMENT_FIELD = (By.XPATH, '//input[@placeholder="Комментарий для курьера"]')
+    ORDER_BUTTON = (By.XPATH, '//div[@class="Order_Buttons__1xGrp"]/button[contains(text(),"Заказать")]')
     YES_BUTTON = (By.XPATH, '//button[contains(text(),"Да")]')
     VIEW_STATUS_BUTTON = (By.XPATH, '//button[contains(text(),"Посмотреть статус")]')
     ORDER_COMPLETED_MODAL_WINDOW_HEADER = (By.XPATH, '//div[@class="Order_ModalHeader__3FDaJ"]')
@@ -88,9 +89,9 @@ class OrderPageAction(BasePage):
     def comment_field_input(self, comment):
         return self.find_element_by_locator(OrderPageLocator.COMMENT_FIELD).send_keys(comment)
 
-    @allure.step('Кликнуть кнопку "Далее"')
-    def click_next_button(self):
-        return self.find_element_by_locator(OrderPageLocator.NEXT_BUTTON).click()
+    @allure.step('Кликнуть кнопку "Заказать"')
+    def click_order_button(self):
+        return self.find_element_by_locator(OrderPageLocator.ORDER_BUTTON).click()
 
     @allure.step('Кликнуть кнопку "Да"')
     def click_yes_button(self):
@@ -107,13 +108,10 @@ class OrderPageAction(BasePage):
         self.rental_period_field_input(rental_period)
         self.scooter_color_checkbox_input(scooter_color)
         self.comment_field_input(comment)
-        self.click_next_button()
+        self.click_order_button()
         self.click_yes_button()
 
     @allure.step('Получить текст в заголовке модального окна')
     def get_order_completed_modal_window_header_text(self):
         return self.find_element_by_locator(OrderPageLocator.ORDER_COMPLETED_MODAL_WINDOW_HEADER).text
 
-    @allure.step('Кликнуть кнопку "Посмотреть статус"')
-    def click_view_status_button(self):
-        return self.find_element_by_locator(OrderPageLocator.VIEW_STATUS_BUTTON).click()

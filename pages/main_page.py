@@ -6,16 +6,13 @@ from pages.base_page import BasePage
 
 
 class MainPageLocator:
-    ORDER_BUTTON_IN_THE_HEADER = (By.XPATH, '//button[@class="Button_Button__ra12g"]')
-    ORDER_BUTTON_IN_THE_BODY_BLOCK = (By.XPATH, '//div[@class="Home_FinishButton__1_cWm"]')
-    ORDER_BUTTON_IN_THE_BODY = (By.XPATH, '//div[@class="Home_FinishButton__1_cWm"]/button')
-    FAQ_ACCORDION_BLOCK = (By.XPATH, '//div[@class="accordion"]')
+    ORDER_BUTTON_IN_THE_HEADER = (By.XPATH, '//div[@class="Header_Nav__AGCXC"]/button[contains(text(),"Заказать")]')
+    ORDER_BUTTON_IN_THE_BODY = (By.XPATH, '//div[@class="Home_FinishButton__1_cWm"]/button[contains(text(),"Заказать")]')
+    FAQ_ACCORDION_BLOCK = (By.XPATH, '//div[contains(text(),"Вопросы о важном")]')
     HOME_HEADER_BLOCK = (By.XPATH, '//div[@class="Home_Header__iJKdX"]')
     SCOOTER_LOGO = (By.XPATH, '//img[@src="/assets/scooter.svg"]')
     YANDEX_LOGO = (By.XPATH, '//img[@src="/assets/ya.svg"]')
-    HOME_HEADER_SCOOTER_MAIN_PAGE = (By.CLASS_NAME, "Home_Header__iJKdX")
-    YANDEX_PROMO_WINDOW_CLOSE_BUTTON = (By.TAG_NAME, 'svg')
-    PAGE_BODY_ELEMENT = (By.XPATH, '//div')
+    PAGE_BODY_ELEMENTS = (By.XPATH, '//div')
 
 
 class MainPageAction(BasePage):
@@ -68,4 +65,4 @@ class MainPageAction(BasePage):
 
     @allure.step('Получаем URL главной страницы Яндекс')
     def get_url_yandex_page(self):
-        return self.get_url_current_page(MainPageLocator.PAGE_BODY_ELEMENT)
+        return self.get_url_current_page(MainPageLocator.PAGE_BODY_ELEMENTS)
